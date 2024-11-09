@@ -2,6 +2,9 @@ import express from "express"
 import { getPayloadClient } from "./get-payload"
 import { nextHandler } from "./next-utils"
 import { nextApp } from "./next-utils"
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express()
 const PORT= Number(process.env.PORT) || 3000
