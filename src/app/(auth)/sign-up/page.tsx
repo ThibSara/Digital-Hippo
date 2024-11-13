@@ -12,6 +12,7 @@ import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator";
+import { trpc } from "@/trpc/client";
 
 const Page = () => {
   const {
@@ -25,6 +26,9 @@ const Page = () => {
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     // send data to the server
   };
+
+  const { data } = trpc.anyApiRoute.useQuery();
+  console.log(data);
 
   return (
     <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
