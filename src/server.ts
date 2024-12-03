@@ -5,6 +5,7 @@ import { nextApp } from "./next-utils"
 import dotenv from 'dotenv';
 import { appRouter } from "./trpc";
 import * as trpcExpress from "@trpc/server/adapters/express"
+import { inferAsyncReturnType } from "@trpc/server";
 dotenv.config();
 
 
@@ -12,6 +13,8 @@ const app = express()
 const PORT= Number(process.env.PORT) || 3000
 
 const createContext= ({req,res}:trpcExpress.CreateExpressContextOptions) => ({req,res})
+
+export type ExpressContext = inferAsyncReturnType<typeof createContext>
 
 const start = async () => {
     const payload = await getPayloadClient({
